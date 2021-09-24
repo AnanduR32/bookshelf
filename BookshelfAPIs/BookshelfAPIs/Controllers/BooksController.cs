@@ -17,24 +17,22 @@ namespace BookshelfAPIs.Controllers
         [HttpGet]
         public List<Book> GetBooks()
         {
-            return db.Books;
+            return db.GetData();
         }
         public Book GetBooks(string isbn)
         {
-            return db.Books.FirstOrDefault(book => book.ISBN == isbn);
+            return db.GetData(isbn);
         }
         
         [HttpPost]
         public string PostBook(Book book)
         {
-            db.PostData(book);
-            return String.Format("Successfully added book! Author: {0} Name: {1} ISBN: {2} Date: {3}", book.Author, book.Name, book.ISBN, book.Date);
+            return db.PostData(book);
         }
         [HttpDelete]
         public string DeleteBook(Book book)
         {
-            db.DeleteData(book);
-            return String.Format("Deleted book where ISBN == {0}", book.ISBN);
+            return db.DeleteData(book);
         }
     }
 }

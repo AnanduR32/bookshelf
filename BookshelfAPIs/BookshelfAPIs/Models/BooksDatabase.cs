@@ -5,13 +5,14 @@ using System.Web;
 using System.IO;
 using System.Globalization;
 using System.Data.SqlClient;
+using System.Configuration;
 
 namespace BookshelfAPIs.Models
 {
-    public class BooksDatabase
+    public class BooksDatabase : IBooksDatabase
     {
 
-        private string connectionString = @"Data Source=localhost\SQLEXPRESS01; database=BookshelfDB; Trusted_Connection=True";
+        private string connectionString = ConfigurationManager.ConnectionStrings["BookDB"].ConnectionString;
         public List<Book> Books = new List<Book>();
         private static BooksDatabase Instance = null;
         public static BooksDatabase instantiateDB()
@@ -39,19 +40,47 @@ namespace BookshelfAPIs.Models
             }
         }
 
-        public void PostData(Book book)
+        private List<Book> ConvertToBookList(SqlDataReader reader)
         {
+            var rows = new List<Book>();
+            while (reader.Read())
+            {
+                // rows.Add(columns.ToDictionary(column => column, column => reader[column]));
+                rows.Add(new Book()
+                {
+                    Author = reader["Author"].ToString(),
+                    Title = reader["Title"].ToString(),
+                    Category = reader["Category"].ToString(),
+                    ISBN = reader["ISBN"].ToString(),
+                    Date = reader["Date"].ToString(),
+                });
+            }
+            return rows;
+        }
 
+        public List<Book> GetData()
+        {
+            return Books;
+        }
+
+        public Book GetData(string isbn)
+        {
+            return Books.FirstOrDefault(book => book.ISBN == isbn);
+        }
+
+        public string PostData(Book book)
+        {
             using (SqlConnection con = new SqlConnection(connectionString))
             using (SqlCommand cmd = con.CreateCommand())
             {
-                cmd.CommandText = String.Format("insert into books_collection (Author, Name, ISBN, Date) values ('{0}', '{1}', '{2}', '{3}')",book.Author, book.Name, book.ISBN, book.Date);
+                cmd.CommandText = String.Format("insert into books_collection (Author, Title, Category, ISBN, Date) values ('{0}', '{1}', '{2}', '{3}', '{4}')",book.Author, book.Title, book.Category, book.ISBN, book.Date);
                 con.Open();
                 cmd.ExecuteNonQuery();
             }
             Books.Add(book);
+            return String.Format("Successfully added book! Author: {0} Title: {1} Category: {2} ISBN: {3} Date: {4}", book.Author, book.Title, book.Category, book.ISBN, book.Date);
         }
-        public void DeleteData(Book Querybook)
+        public string DeleteData(Book Querybook)
         {
 
             using (SqlConnection con = new SqlConnection(connectionString))
@@ -62,30 +91,8 @@ namespace BookshelfAPIs.Models
                 cmd.ExecuteNonQuery();
             }
             Books.Remove(Books.FirstOrDefault(book => book.ISBN == Querybook.ISBN));
+            return String.Format("Deleted book where ISBN == {0}", Querybook.ISBN);
         }
+    }
 
-        private List<Book> ConvertToBookList(SqlDataReader reader)
-        {
-            var rows = new List<Book>();
-            while (reader.Read())
-            {
-                // rows.Add(columns.ToDictionary(column => column, column => reader[column]));
-                rows.Add(new Book()
-                {
-                    Author = reader["Author"].ToString(),
-                    Name = reader["Name"].ToString(),
-                    ISBN = reader["ISBN"].ToString(),
-                    Date = reader["Date"].ToString(),
-                });
-            }
-            return rows;
-        }
-    }
-    public class Book
-    {
-        public string ISBN { get; set; }
-        public string Name { get; set; }
-        public string Author { get; set; }
-        public string Date { get; set; }
-    }
 }
