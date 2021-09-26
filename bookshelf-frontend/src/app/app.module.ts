@@ -6,13 +6,17 @@ import { AppComponent } from './app.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { NavbarComponent } from './components/navbar/navbar.component'
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { MainComponent } from './components/dashboard/main/main.component';
+import { SideComponent } from './components/dashboard/side/side.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
-    NavbarComponent
+    NavbarComponent,
+    MainComponent,
+    SideComponent
   ],
   imports: [
     BrowserModule,

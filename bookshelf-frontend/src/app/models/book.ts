@@ -1,5 +1,5 @@
 export class Book {
-    Name?:string
+    Title?:string
     Author?:string
     Date?:string
     ISBN?:string
