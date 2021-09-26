@@ -10,6 +10,7 @@ namespace BookshelfAPIs.Models
     {
         List<Book> GetData();
         Book GetData(string isbn);
+        List<Book> GetDataByCategory(string category);
         string PostData(Book book);
         string DeleteData(Book book);
 
