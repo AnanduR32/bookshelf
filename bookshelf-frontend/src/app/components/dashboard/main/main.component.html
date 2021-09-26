@@ -1,6 +1,12 @@
 <div class="row my-2 mx-2">
     <div class="m-2 custom-container" *ngFor="let book of Books; let i = index">
-        {{book.Title}}
+        <h4>{{book.Title}}</h4>
+        <div class="img-container">
+            <img src="{{book.Image}}" alt="" width="150px">
+        </div>
+        {{book.Author}}
+        {{book.Price}}
+        {{book.OldPrice}}
     </div>
 </div>
 

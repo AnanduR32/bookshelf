@@ -1,6 +1,10 @@
 .custom-container{
-    height: 280px;
-    width: 280px;
+    height: 300px;
+    width: 200px;
     background-color: rgb(115, 144, 170);
     border-radius: 10px;
+}
+
+.img-container{
+    border-radius: 7px;
 }

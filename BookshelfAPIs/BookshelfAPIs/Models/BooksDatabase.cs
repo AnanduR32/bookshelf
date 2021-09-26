@@ -87,7 +87,7 @@ namespace BookshelfAPIs.Models
             Books.Add(book);
             return String.Format(
                 "Successfully added book! Author: {0} Title: {1} Category: {2} ISBN: {3} Date: {4}", 
-                book.Author, book.Title, book.Category, book.ISBN, book.Date
+                book.Author, book.Title, book.Category, book.ISBN, book.Image, book.Rating, book.Format, book.Price, book.OldPrice 
                 );
         }
         public string DeleteData(Book Querybook)
