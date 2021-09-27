@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { DatabaseService } from 'src/app/services/database.service';
 
 @Component({
@@ -9,11 +10,15 @@ import { DatabaseService } from 'src/app/services/database.service';
 export class NavbarComponent implements OnInit {
 
   categories: string[] = []
-  constructor(private db: DatabaseService) { }
+  constructor(private db: DatabaseService, private route: Router) { }
+
+  navigate(loc: string) {
+    this.route.navigate([loc])
+  }
 
   ngOnInit(): void {
     this.db.getCategories().subscribe(
-      (response) =>{
+      (response) => {
         this.categories = response
       },
       (error) => {

@@ -6,9 +6,14 @@
             <img class="card-img-top" src="{{book.Image}}" alt="" width="150px">
         </div>
         <div class="author">{{book.Author}}</div>
-        <div class="d-flex align-items-center">
-            <div class="price d-inline-block">{{book.Price | currency: 'USD' }}</div>
-            <div class="oldprice d-inline-block">{{book.OldPrice}}</div>
+        <div class="d-flex align-items-center  justify-content-between">
+            <div class="d-flex align-items-center">
+                <div class="price d-inline-block">{{book.Price | currency: 'USD' }}</div>
+                <div class="oldprice d-inline-block">{{book.OldPrice}}</div>
+            </div>
+            <div class="rating">
+                Score: {{book.Rating}}/5
+            </div>
         </div>
     </button>
 

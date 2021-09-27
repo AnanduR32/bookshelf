@@ -3,3 +3,27 @@
 body{
     font-family: 'IBM Plex Sans', sans-serif;
 }
+
+
+.title{
+    font-size: large;
+    font-weight: bolder;
+    height: large;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.author{
+    font-size: medium;
+    font-weight: bold;
+}
+
+.price{
+    font-weight: 500;
+    color: black;
+}
+.oldprice{
+    font-size: small;
+    color: gray;
+    text-decoration: line-through;
+}

@@ -23,16 +23,23 @@ namespace BookshelfAPIs.Controllers
         {
             return db.GetData(isbn);
         }
-        
+
+        [HttpPut]
+        public string PutData(Book book)
+        {
+            return db.PutData(book);
+        }
+
+
         [HttpPost]
         public string PostBook(Book book)
         {
             return db.PostData(book);
         }
         [HttpDelete]
-        public string DeleteBook(Book book)
+        public string DeleteBook(string isbn)
         {
-            return db.DeleteData(book);
+            return db.DeleteData(isbn);
         }
     }
 }

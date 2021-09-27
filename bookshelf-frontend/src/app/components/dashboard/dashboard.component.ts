@@ -16,7 +16,6 @@ export class DashboardComponent implements OnInit {
     this.db.getBooks().subscribe(
       (response) => {
         this.Books = response
-        console.log(this.Books)
       },
       (error) => {
         alert("Failed to fetch bookshelf repository!")

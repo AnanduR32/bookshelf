@@ -10,8 +10,11 @@ namespace BookshelfAPIs.Models
     {
         List<Book> GetData();
         Book GetData(string isbn);
+
+        string PutData(Book book);
+
         string PostData(Book book);
-        string DeleteData(Book book);
+        string DeleteData(string isbn);
 
     }
 }

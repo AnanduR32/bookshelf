@@ -6,11 +6,13 @@ import { AppComponent } from './app.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { FormsModule } from '@angular/forms';
 
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { MainComponent } from './components/dashboard/main/main.component';
-import { SideComponent } from './components/dashboard/side/side.component'
+import { SideComponent } from './components/dashboard/side/side.component';
+import { BookDetailsComponent } from './components/book-details/book-details.component'
 
 @NgModule({
   declarations: [
@@ -18,13 +20,15 @@ import { SideComponent } from './components/dashboard/side/side.component'
     DashboardComponent,
     NavbarComponent,
     MainComponent,
-    SideComponent
+    SideComponent,
+    BookDetailsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

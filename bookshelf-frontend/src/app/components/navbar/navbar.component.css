@@ -9,3 +9,6 @@
 .navbar-brand:hover{
     color: rgb(178, 214, 245);
 }
+a:hover{
+    cursor: pointer;
+}

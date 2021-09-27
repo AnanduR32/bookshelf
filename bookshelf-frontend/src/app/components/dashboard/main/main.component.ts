@@ -18,7 +18,7 @@ export class MainComponent implements OnInit {
   }
 
   navigateToBook(book:Book){
-    this.route.navigate(['book']).catch((error)=>{ console.log("Failed to navigate to "+book.ISBN) })
+    this.route.navigate(['book',book.ISBN]).catch((error)=>{ console.log("Failed to navigate to "+book.ISBN) })
   }
 
 }
