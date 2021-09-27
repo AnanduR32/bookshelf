@@ -1,5 +1,6 @@
 <div class="w-82 mx-auto p-2">
     <ul class="list-group">
-        <li class="list-group-item" *ngFor="let cat of categories">{{cat}}</li>
+        <li class="list-group-item" (click)="changeCategory('all')">All</li>
+        <li class="list-group-item" *ngFor="let cat of categories" (click)="changeCategory(cat)">{{cat}}</li>
     </ul>
 </div>

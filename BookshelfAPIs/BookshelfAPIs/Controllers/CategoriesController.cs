@@ -19,7 +19,7 @@ namespace BookshelfAPIs.Controllers
         {
             return db.GetCategories();
         }
-        public List<Book> GetDataByCategory(string category)
+        public List<Book> GetData(string category)
         {
             return db.GetDataByCategory(category);
         }

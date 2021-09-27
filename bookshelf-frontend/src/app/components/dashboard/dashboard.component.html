@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-lg-3">
-        <app-side></app-side>
+        <app-side (categoryEmitter)="changeCategory($event)"></app-side>
     </div>
     <div class="col-lg-9">
         <app-main [Books]="Books"></app-main>

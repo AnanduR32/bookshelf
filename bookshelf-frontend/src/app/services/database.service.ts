@@ -21,6 +21,9 @@ export class DatabaseService {
   getBookByID(id:string): Observable<any>{
     return this.http.get(this.BASE_ENDPOINT+'books'+'/?isbn='+id)
   }
+  getBooksByCategory(category:string): Observable<any>{
+    return this.http.get(this.BASE_ENDPOINT+"categories?category="+category)
+  }
 
   updateBook(book:Book): Observable<any>{
     return this.http.put(this.BASE_ENDPOINT+'books',book);

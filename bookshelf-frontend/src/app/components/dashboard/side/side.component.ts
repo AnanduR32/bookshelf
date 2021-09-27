@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { DatabaseService } from 'src/app/services/database.service';
 
 @Component({
@@ -8,6 +8,11 @@ import { DatabaseService } from 'src/app/services/database.service';
 })
 export class SideComponent implements OnInit {
 
+  @Output() categoryEmitter = new EventEmitter()
+
+  changeCategory(category:string){
+    this.categoryEmitter.emit(category)
+  }
   categories: string[] = []
   constructor(private db: DatabaseService) { }
 

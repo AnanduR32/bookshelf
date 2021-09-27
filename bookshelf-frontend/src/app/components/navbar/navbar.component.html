@@ -1,11 +1,14 @@
 <nav class="navbar navbar-expand-lg navbar-dark custom-navbar-red">
     <div class="container-fluid">
-        <a class="navbar-brand" (click)="navigate('')">Bookshelf</a>
+        <a class="navbar-brand" (click)="navigate('')">Bookshelf
+          <img src="assets/images/bookshelf.png" alt="" width="35px" class="m-2">
+        </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <div class="d-flex mx-auto"></div>
+            <!-- <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   Categories
@@ -16,7 +19,7 @@
                   <li *ngFor="let cat of categories"><a class="dropdown-item" href="#">{{cat}}</a></li>
                 </ul>
               </li>
-            </ul>
+            </ul> -->
             <form class="d-flex">
               <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
               <button class="btn btn-success" type="submit">Search</button>

@@ -32,7 +32,7 @@ namespace BookshelfAPIs.Models
 
         public List<Book> GetDataByCategory(string category)
         {
-            throw new NotImplementedException();
+            return Books.FindAll(x => x.Category == category);
         }
     }
 }

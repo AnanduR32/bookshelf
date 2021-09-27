@@ -11,15 +11,36 @@ export class DashboardComponent implements OnInit {
 
   constructor(private db: DatabaseService) { }
 
-  Books: Book[] = []
-  ngOnInit(): void {
+  changeCategory(category: string) {
+    if (category != 'all') {
+      this.db.getBooksByCategory(category).subscribe(
+        (response) => {
+          this.Books = response
+        },
+        (error) => {
+          alert("Failed to fetch books by category")
+        }
+      )
+    } else {
+      this.getBookData();
+    }
+
+  }
+
+  getBookData(){
     this.db.getBooks().subscribe(
       (response) => {
         this.Books = response
       },
       (error) => {
         alert("Failed to fetch bookshelf repository!")
-      })
+      }
+    );
+  }
+
+  Books: Book[] = []
+  ngOnInit(): void {
+    this.getBookData()
   }
 
 }
