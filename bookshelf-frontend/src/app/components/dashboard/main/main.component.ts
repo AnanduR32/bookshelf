@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Book } from 'src/app/models/book';
 
 @Component({
@@ -9,9 +10,15 @@ import { Book } from 'src/app/models/book';
 export class MainComponent implements OnInit {
 
   @Input() Books:Book[] = []
-  constructor() { }
+  constructor(private route: Router) { }
+
+  p: number = 1;
 
   ngOnInit(): void {
+  }
+
+  navigateToBook(book:Book){
+    this.route.navigate(['book']).catch((error)=>{ console.log("Failed to navigate to "+book.ISBN) })
   }
 
 }

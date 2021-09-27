@@ -92,12 +92,16 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\BooksController.cs" />
+    <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\book.cs" />
     <Compile Include="Models\BooksDatabase.cs" />
+    <Compile Include="Models\CategoriesDatabase.cs" />
+    <Compile Include="Models\DataLoadLogic.cs" />
     <Compile Include="Models\IBooksDatabase.cs" />
+    <Compile Include="Models\ICategoriesDatabase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

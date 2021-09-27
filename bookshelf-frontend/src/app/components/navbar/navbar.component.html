@@ -11,10 +11,9 @@
                   Categories
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><a class="dropdown-item" href="#">All</a></li>
                   <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                  <li *ngFor="let cat of categories"><a class="dropdown-item" href="#">{{cat}}</a></li>
                 </ul>
               </li>
             </ul>

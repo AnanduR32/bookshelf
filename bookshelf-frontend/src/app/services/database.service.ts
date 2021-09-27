@@ -10,9 +10,12 @@ export class DatabaseService {
 
   constructor(private http: HttpClient ) { }
 
-  private BASE_ENDPOINT:string = "http://localhost:11970/api/books"
+  private BASE_ENDPOINT:string = "http://localhost:11970/api/"
 
   getBooks(): Observable<any>{
-    return this.http.get(this.BASE_ENDPOINT)
+    return this.http.get(this.BASE_ENDPOINT+'books')
+  }
+  getCategories(): Observable<any>{
+    return this.http.get(this.BASE_ENDPOINT+'categories')
   }
 }

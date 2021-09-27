@@ -1,10 +1,43 @@
 .custom-container{
-    height: 300px;
-    width: 200px;
-    background-color: rgb(115, 144, 170);
+    height: 380px;
+    width: 230px;
+    background-image: linear-gradient(to right, #f5cfcf, #faf0f0);
     border-radius: 10px;
+}
+
+button{
+    border: none;
+    outline: none;
 }
 
 .img-container{
     border-radius: 7px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+img {
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0));
+  }
+
+.title{
+    font-size: 18px;
+    font-weight: bold;
+    height: large;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.author{
+    font-size: medium;
+    font-weight: 500;
+}
+
+.price{
+    font-weight: 600;
+    color: black;
+}
+.oldprice{
+    font-size: small;
+    color: gray;
+    text-decoration: line-through;
 }

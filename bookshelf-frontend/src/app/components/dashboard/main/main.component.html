@@ -1,12 +1,18 @@
 <div class="row my-2 mx-2">
-    <div class="m-2 custom-container" *ngFor="let book of Books; let i = index">
-        <h4>{{book.Title}}</h4>
-        <div class="img-container">
-            <img src="{{book.Image}}" alt="" width="150px">
+    <button class="m-2 p-2 custom-container" (click)="navigateToBook(book)"
+        *ngFor="let book of Books | paginate: { itemsPerPage: 25, currentPage: p }; let i = index">
+        <div class="title">{{book.Title}}</div>
+        <div class="p-2 h-75 img-container">
+            <img class="card-img-top" src="{{book.Image}}" alt="" width="150px">
         </div>
-        {{book.Author}}
-        {{book.Price}}
-        {{book.OldPrice}}
+        <div class="author">{{book.Author}}</div>
+        <div class="d-flex align-items-center">
+            <div class="price d-inline-block">{{book.Price | currency: 'USD' }}</div>
+            <div class="oldprice d-inline-block">{{book.OldPrice}}</div>
+        </div>
+    </button>
+
+    <div class="text-center">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
     </div>
 </div>
-
