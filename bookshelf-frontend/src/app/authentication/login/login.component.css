@@ -1,0 +1,15 @@
+.btn {
+    background-color: #B26E63;
+}
+
+.btn:hover {
+    background-color: #016FB9;
+}
+
+span{
+    color: #B26E63;
+}
+span:hover{
+    font-weight: 600;
+    cursor: pointer;
+}
