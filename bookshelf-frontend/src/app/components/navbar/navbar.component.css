@@ -1,5 +1,5 @@
 .custom-navbar-red{
-    background-color: rgb(207, 59, 59);
+    background-color: #F37C7C;
 }
 
 .navbar-brand{
@@ -7,8 +7,13 @@
 }
 
 .navbar-brand:hover{
-    color: rgb(178, 214, 245);
+    color: #272932;
 }
 a:hover{
     cursor: pointer;
+}
+
+.custom-nav-btn-color{
+    background-color: #0F7173;
+    color: aliceblue;
 }

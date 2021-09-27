@@ -12,7 +12,9 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { MainComponent } from './components/dashboard/main/main.component';
 import { SideComponent } from './components/dashboard/side/side.component';
-import { BookDetailsComponent } from './components/book-details/book-details.component'
+import { BookDetailsComponent } from './components/book-details/book-details.component';
+import { LoginComponent } from './authentication/login/login.component';
+import { RegisterComponent } from './authentication/register/register.component'
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { BookDetailsComponent } from './components/book-details/book-details.com
     NavbarComponent,
     MainComponent,
     SideComponent,
-    BookDetailsComponent
+    BookDetailsComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

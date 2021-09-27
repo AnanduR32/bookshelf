@@ -1,6 +1,6 @@
 <div class="row my-2 mx-2">
     <button class="m-2 p-2 custom-container" (click)="navigateToBook(book)"
-        *ngFor="let book of Books | paginate: { itemsPerPage: 25, currentPage: p }; let i = index">
+        *ngFor="let book of Books | paginate: { itemsPerPage: 20, currentPage: p }; let i = index">
         <div class="title">{{book.Title}}</div>
         <div class="p-2 h-75 img-container">
             <img class="card-img-top" src="{{book.Image}}" alt="" width="150px">
