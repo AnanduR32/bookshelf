@@ -1,9 +1,9 @@
 <div class="container">
     <div class="row m-2">
-        <div class="col-lg-3">
-            <img height="400px" src="{{book.Image}}" alt="">
+        <div class="col-lg-4">
+            <img width="100%" src="{{book.Image}}" alt="">
         </div>
-        <div class="col-lg-9">
+        <div class="col-lg-8">
             <div *ngIf="!editModeToggle">
                 <div class="title">{{book.Title}}</div>
                 <div class="author">{{book.Author}}</div>
@@ -87,7 +87,7 @@
                 </form>
             </div>
 
-            <div class="admin-controls d-flex align-items-center" *ngIf="isAdmin">
+            <div class="admin-controls d-flex align-items-center" *ngIf="isLoggedIn()">
                 <button class="btn btn-warning d-inline-block" (click)="toggleEditMode()">
                     Edit
                 </button>

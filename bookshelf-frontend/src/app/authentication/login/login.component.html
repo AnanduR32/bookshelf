@@ -5,14 +5,14 @@
             <form #signInForm="ngForm" (ngSubmit)="onSubmit()">
                 <div class="form-group p-2">
                     <input type="email" name="email" id="email" class="form-control" placeholder="Email"
-                        [(ngModel)]="user.email" #email='ngModel' required
+                        [(ngModel)]="user.Email" #email='ngModel' required
                         [class.is-invalid]="email.invalid && email.touched">
                 </div>
                 <small [class.d-none]="email.untouched || email.valid" class="text-danger">This field is
                     required</small>
                 <div class="form-group p-2">
                     <input type="password" name="password" id="password" class="form-control" placeholder="Password"
-                        [(ngModel)]="user.password" #pswd='ngModel' required
+                        [(ngModel)]="user.Password" #pswd='ngModel' required
                         [class.is-invalid]="pswd.invalid && pswd.touched">
                 </div>
                 <small [class.d-none]="pswd.untouched || pswd.valid" class="text-danger">This field is required</small>

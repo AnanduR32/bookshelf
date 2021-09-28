@@ -17,17 +17,21 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.auth.login(this.user).subscribe((response)=>{ 
-      this.router.navigate(['home']).catch((error)=>{console.log('Failed to navigate to home')})
-      this.auth.saveLoggedInData(response)
-    },
-    (error)=>{
-      alert("User authentication failed!")
-    })
+    this.auth.login(this.user).subscribe(
+      (response) => {
+        this.router.navigate(['']).catch((error) => { console.log('Failed to navigate to home') })
+        this.auth.saveLoggedInData(this.user)
+      },
+      (error) => {
+        alert("User authentication failed!")
+      },
+      ()=>{
+        alert("Successfully logged in!")
+      })
   }
 
-  goToRegister(){
-    this.router.navigate(['registration'])
+  goToRegister() {
+    this.router.navigate(['register'])
   }
 
   ngOnInit(): void {

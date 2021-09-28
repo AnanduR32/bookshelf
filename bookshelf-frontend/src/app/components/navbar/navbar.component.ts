@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/authentication/auth.service';
 import { DatabaseService } from 'src/app/services/database.service';
 
 @Component({
@@ -10,10 +11,17 @@ import { DatabaseService } from 'src/app/services/database.service';
 export class NavbarComponent implements OnInit {
 
   categories: string[] = []
-  constructor(private db: DatabaseService, private route: Router) { }
+  constructor(private db: DatabaseService, private route: Router, private auth: AuthService) { }
 
   navigate(loc: string) {
     this.route.navigate([loc])
+  }
+
+  isLoggedIn():boolean{
+    return this.auth.isLoggedIn()
+  }
+  logout() {
+    this.auth.logout()
   }
 
   ngOnInit(): void {

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { User } from '../models/user';
 
@@ -8,35 +9,24 @@ import { User } from '../models/user';
 })
 export class AuthService {
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private route: Router) {
     this.user = new User()
     this.loadLoggedInData()
    }
 
-  BASE_URL:string = "http://localhost:11970/api/auth" 
+  BASE_URL:string = "http://localhost:11970/auth" 
   private user: User
 
   login(user:User): Observable<any>{
-    return this.http.get(this.BASE_URL+'?email='+user.Email+'&password='+user.Password)
+    return this.http.post(this.BASE_URL+'/login', user)
   }
 
   register(user:User): Observable<any>{
-    return this.http.post(this.BASE_URL, user)
+    return this.http.post(this.BASE_URL+'/register', user)
   }
 
-  saveLoggedInData(data: any) {
-    let user = {
-      'Name': data.user.Name,
-      'Mobile': data.user.Mobile,
-      'Email': data.user.Email,
-      'Password': data.user.Password,
-      'UserID': data.user.UserID
-    }
-    this.user.Name = user.Name
-    this.user.Mobile = user.Mobile
-    this.user.Email = user.Email
-    this.user.Password = user.Password
-    this.user.UserID = user.UserID
+  saveLoggedInData(data: User) {
+    this.user = data
     localStorage.setItem('user', JSON.stringify(this.user))
   }
 
@@ -47,7 +37,21 @@ export class AuthService {
     }
     else {
       this.user = user
-      console.log(`${this.user.Name} is logged in`)
+      console.log(`${this.user.Email} is logged in`)
     }
+  }
+  isLoggedIn():boolean{
+    if (this.user.Email == null) {
+      return false
+
+    }
+    else {
+      return true
+    }
+  }
+  logout(){
+    localStorage.removeItem('user')
+    this.user = new User()
+    this.route.navigate(['login']).catch((error)=>{console.log('Failed to navigate to home')})
   }
 }

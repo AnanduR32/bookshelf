@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from 'src/app/authentication/auth.service';
 import { Book } from 'src/app/models/book';
 import { DatabaseService } from 'src/app/services/database.service';
 
@@ -13,11 +14,18 @@ export class BookDetailsComponent implements OnInit {
   bookID: string = ''
   book: Book = new Book()
   newBook: Book = new Book()
-  constructor(private activatedRoute: ActivatedRoute, private db: DatabaseService, private route: Router) {
+  constructor(
+    private activatedRoute: ActivatedRoute, 
+    private db: DatabaseService, 
+    private route: Router,
+    private auth: AuthService
+    ) {
     this.bookID = this.activatedRoute.snapshot.paramMap.get('id')!.toString()
   }
 
-  isAdmin: boolean = true;
+  isLoggedIn(){
+    return this.auth.isLoggedIn()
+  }
   editModeToggle: boolean = false;
 
   toggleEditMode(){

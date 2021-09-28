@@ -17,3 +17,24 @@ a:hover{
     background-color: #0F7173;
     color: aliceblue;
 }
+
+.btn {
+    border: none;
+    outline: none;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.btn:hover {
+    background-color: #B26E63 !important;
+}
+
+.search {
+    border: none;
+    outline: none;
+    border-radius: 8px;
+}
+
+.search:focus {
+    box-shadow: 0px 0px 2px gray;
+}

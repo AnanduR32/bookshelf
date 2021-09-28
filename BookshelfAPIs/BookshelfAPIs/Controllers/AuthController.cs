@@ -15,14 +15,14 @@ namespace BookshelfAPIs.Controllers
         AuthDatabase db = AuthDatabase.instantiateDB();
 
         [HttpPost]
-        [Route("Login")]
+        [Route("auth/login")]
         public bool login(User user)
         {
             return db.login(user);
         }
 
         [HttpPost]
-        [Route("Register")]
+        [Route("auth/register")]
         public bool register(User user)
         {
             return db.register(user);

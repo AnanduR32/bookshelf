@@ -38,14 +38,23 @@ namespace BookshelfAPIs.Models
         public bool login(User user)
         {
             string pswdHashed = ComputeSha256Hash(user.Password);
+            string pswdFromDB = String.Empty;
             using (SqlConnection con = new SqlConnection(connectionString))
             using (SqlCommand cmd = con.CreateCommand())
             {
                 cmd.CommandText = String.Format("select Password from UserData where Email='{0}'", user.Email);
                 con.Open();
-                SqlDataReader dr = cmd.ExecuteReader();
-                dr.Read();
-                string pswdFromDB = dr.GetString(0);
+                try
+                {
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    dr.Read();
+                    pswdFromDB = dr.GetString(0);
+                }
+                catch(Exception e)
+                {
+                    return false;
+                }
+                
                 if(pswdFromDB == pswdHashed)
                 {
                     return true;
@@ -72,7 +81,15 @@ namespace BookshelfAPIs.Models
                     user.UserID, user.Name, user.Email, user.Mobile, user.Password
                     );
                 con.Open();
-                rows = cmd.ExecuteNonQuery();
+                try
+                {
+                    rows = cmd.ExecuteNonQuery();
+                }
+                catch(Exception e)
+                {
+                    return false;
+                }
+                
             }
             if (rows > 0)
             {
