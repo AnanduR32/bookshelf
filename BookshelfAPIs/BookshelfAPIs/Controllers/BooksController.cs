@@ -15,13 +15,29 @@ namespace BookshelfAPIs.Controllers
         BooksDatabase db = BooksDatabase.instantiateDB();
 
         [HttpGet]
-        public List<Book> GetBooks()
+        public HttpResponseMessage GetBooks()
         {
-            return db.GetData();
+            try
+            {
+                List<Book> data = db.GetData();
+                return Request.CreateResponse(HttpStatusCode.OK, data);
+            }
+            catch (Exception e)
+            {
+                return Request.CreateResponse(HttpStatusCode.NoContent);
+            }
         }
-        public Book GetBooks(string isbn)
+        public HttpResponseMessage GetBooks(string isbn)
         {
-            return db.GetData(isbn);
+            try
+            {
+                Book data = db.GetData(isbn);
+                return Request.CreateResponse(HttpStatusCode.OK, data);
+            }
+            catch(Exception e)
+            {
+                return Request.CreateResponse(HttpStatusCode.NotFound);
+            }
         }
 
         [HttpPut]
