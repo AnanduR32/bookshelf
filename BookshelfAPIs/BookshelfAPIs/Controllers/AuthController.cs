@@ -16,16 +16,32 @@ namespace BookshelfAPIs.Controllers
 
         [HttpPost]
         [Route("auth/login")]
-        public bool login(User user)
+        public HttpResponseMessage login(User user)
         {
-            return db.login(user);
+            try
+            {
+                User data = db.login(user);
+                return Request.CreateResponse(HttpStatusCode.OK, data);
+            }
+            catch (Exception e)
+            {
+                return Request.CreateResponse(e);
+            }
         }
 
         [HttpPost]
         [Route("auth/register")]
-        public bool register(User user)
+        public HttpResponseMessage register(User user)
         {
-            return db.register(user);
+            try
+            {
+                bool data = db.register(user);
+                return Request.CreateResponse(HttpStatusCode.OK, data);
+            }
+            catch (Exception e)
+            {
+                return Request.CreateResponse(HttpStatusCode.Conflict);
+            }
         }
     }
 }

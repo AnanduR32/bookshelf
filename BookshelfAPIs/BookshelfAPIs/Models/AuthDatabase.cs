@@ -35,10 +35,11 @@ namespace BookshelfAPIs.Models
             }
         }
 
-        public bool login(User user)
+        public User login(User user)
         {
             string pswdHashed = ComputeSha256Hash(user.Password);
             string pswdFromDB = String.Empty;
+            User ResUser = new User();
             using (SqlConnection con = new SqlConnection(connectionString))
             using (SqlCommand cmd = con.CreateCommand())
             {
@@ -52,16 +53,37 @@ namespace BookshelfAPIs.Models
                 }
                 catch(Exception e)
                 {
-                    return false;
+                    throw new Exception("Failed to retrieve hashed password from database");
                 }
-                
-                if(pswdFromDB == pswdHashed)
+                con.Close();
+
+                if (pswdFromDB == pswdHashed)
                 {
-                    return true;
+                    cmd.CommandText = String.Format("select * from UserData where Email='{0}'", user.Email);
+                    con.Open();
+                    try
+                    {
+                        SqlDataReader dr = cmd.ExecuteReader();
+                        while (dr.Read())
+                        {
+                            ResUser.Name = dr["Name"].ToString();
+                            ResUser.Email = dr["Email"].ToString();
+                            ResUser.Mobile = Int32.Parse(dr["Mobile"].ToString());
+                            ResUser.UserID = dr["UserID"].ToString();
+                            ResUser.Password = dr["Password"].ToString();
+                        }
+                        return ResUser;
+                    }
+                    catch(Exception e)
+                    {
+                        throw new Exception(e.Message);
+                    }
+                    con.Close();
+                    
                 }
                 else
                 {
-                    return false;
+                    throw new Exception("Passwords do not match");
                 }
             }
 

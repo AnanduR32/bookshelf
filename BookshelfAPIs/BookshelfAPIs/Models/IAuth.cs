@@ -8,7 +8,7 @@ namespace BookshelfAPIs.Models
 {
     interface IAuth
     {
-        bool login(User user);
+        User login(User user);
         bool register(User user);
     }
 }

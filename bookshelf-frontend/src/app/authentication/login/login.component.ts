@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
     this.auth.login(this.user).subscribe(
       (response) => {
         this.router.navigate(['']).catch((error) => { console.log('Failed to navigate to home') })
-        this.auth.saveLoggedInData(this.user)
+        this.auth.saveLoggedInData(response)
       },
       (error) => {
         alert("User authentication failed!")

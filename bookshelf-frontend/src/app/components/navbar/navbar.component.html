@@ -25,6 +25,7 @@
         <button class="btn custom-nav-btn-color" type="submit">Search</button>
       </form>
       <div class="d-flex mx-auto"></div>
+      <div *ngIf="isLoggedIn()" class="h-100 p-2 mx-1 my-auto username">{{getUsername()}}</div>
       <button *ngIf="!isLoggedIn()" class="p-2 mx-1 btn custom-nav-btn-color" routerLink="/login">Login</button>
       <button *ngIf="isLoggedIn()" class="p-2 mx-1 btn custom-nav-btn-color" (click)="logout()">Sign out</button>
     </div>

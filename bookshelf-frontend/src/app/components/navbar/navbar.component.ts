@@ -20,6 +20,11 @@ export class NavbarComponent implements OnInit {
   isLoggedIn():boolean{
     return this.auth.isLoggedIn()
   }
+
+  getUsername(){
+    return this.auth.getUsername();
+  }
+
   logout() {
     this.auth.logout()
   }

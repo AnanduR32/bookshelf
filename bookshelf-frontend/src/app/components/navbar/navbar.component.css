@@ -38,3 +38,9 @@ a:hover{
 .search:focus {
     box-shadow: 0px 0px 2px gray;
 }
+
+.username{
+    text-align: center;
+    color: aliceblue;
+    font-weight: bold;
+}

@@ -15,13 +15,29 @@ namespace BookshelfAPIs.Controllers
         CategoriesDatabase db = CategoriesDatabase.instantiateDB();
 
         [HttpGet]
-        public List<string> GetData()
+        public HttpResponseMessage GetData()
         {
-            return db.GetCategories();
+            try
+            {
+                List<string> data = db.GetCategories();
+                return Request.CreateResponse(HttpStatusCode.OK, data);
+            }
+            catch (Exception e)
+            {
+                return Request.CreateResponse(HttpStatusCode.Conflict);
+            }
         }
-        public List<Book> GetData(string category)
+        public HttpResponseMessage GetData(string category)
         {
-            return db.GetDataByCategory(category);
+            try
+            {
+                List<Book> data = db.GetDataByCategory(category);
+                return Request.CreateResponse(HttpStatusCode.OK, data);
+            }
+            catch (Exception e)
+            {
+                return Request.CreateResponse(HttpStatusCode.Conflict);
+            }
         }
     }
 }

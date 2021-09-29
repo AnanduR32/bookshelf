@@ -12,17 +12,17 @@ export class AuthService {
   constructor(private http: HttpClient, private route: Router) {
     this.user = new User()
     this.loadLoggedInData()
-   }
-
-  BASE_URL:string = "http://localhost:11970/auth" 
-  private user: User
-
-  login(user:User): Observable<any>{
-    return this.http.post(this.BASE_URL+'/login', user)
   }
 
-  register(user:User): Observable<any>{
-    return this.http.post(this.BASE_URL+'/register', user)
+  BASE_URL: string = "http://localhost:11970/auth"
+  private user: User
+
+  login(user: User): Observable<any> {
+    return this.http.post(this.BASE_URL + '/login', user)
+  }
+
+  register(user: User): Observable<any> {
+    return this.http.post(this.BASE_URL + '/register', user)
   }
 
   saveLoggedInData(data: User) {
@@ -32,7 +32,7 @@ export class AuthService {
 
   loadLoggedInData() {
     let user = JSON.parse(localStorage.getItem('user')!)
-    if(user == null){
+    if (user == null) {
       console.log('User not logged in')
     }
     else {
@@ -40,7 +40,7 @@ export class AuthService {
       console.log(`${this.user.Email} is logged in`)
     }
   }
-  isLoggedIn():boolean{
+  isLoggedIn(): boolean {
     if (this.user.Email == null) {
       return false
 
@@ -49,9 +49,13 @@ export class AuthService {
       return true
     }
   }
-  logout(){
+  getUsername(): string {
+    return this.user.Name!
+  }
+
+  logout() {
     localStorage.removeItem('user')
     this.user = new User()
-    this.route.navigate(['login']).catch((error)=>{console.log('Failed to navigate to home')})
+    this.route.navigate(['login']).catch((error) => { console.log('Failed to navigate to home') })
   }
 }

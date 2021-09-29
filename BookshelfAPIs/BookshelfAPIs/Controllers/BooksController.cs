@@ -41,21 +41,46 @@ namespace BookshelfAPIs.Controllers
         }
 
         [HttpPut]
-        public string PutData(Book book)
+        public HttpResponseMessage PutData(Book book)
         {
-            return db.PutData(book);
+            try
+            {
+                string data = db.PutData(book);
+                return Request.CreateResponse(HttpStatusCode.OK, data); 
+            }
+            catch (Exception e)
+            {
+                return Request.CreateResponse(HttpStatusCode.NotModified);
+            }
+
         }
 
 
         [HttpPost]
-        public string PostBook(Book book)
+        public HttpResponseMessage PostBook(Book book)
         {
-            return db.PostData(book);
+            try
+            {
+                string data = db.PostData(book);
+                return Request.CreateResponse(HttpStatusCode.OK, data);
+            }
+            catch (Exception e)
+            {
+                return Request.CreateResponse(HttpStatusCode.Conflict);
+            }
         }
         [HttpDelete]
-        public string DeleteBook(string isbn)
+        public HttpResponseMessage DeleteBook(string isbn)
         {
-            return db.DeleteData(isbn);
+            try
+            {
+                string data = db.DeleteData(isbn);
+                return Request.CreateResponse(HttpStatusCode.OK, data);
+            }
+            catch (Exception e)
+            {
+                return Request.CreateResponse(HttpStatusCode.Forbidden);
+            }
         }
     }
 }
